@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">VibTimer</string>
-    <string name="textTimer">00:00</string>
 </resources>
