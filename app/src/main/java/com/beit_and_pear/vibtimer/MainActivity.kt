@@ -1,8 +1,10 @@
 package com.beit_and_pear.vibtimer
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.os.Vibrator
 import android.util.Log
 import com.beit_and_pear.vibtimer.databinding.ActivityMainBinding
 
@@ -12,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long)
         : CountDownTimer(millisInFuture, countDownInterval) {
-
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         var isRunning = false
 
         override fun onTick(millisUntilFinished: Long) {
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onFinish() {
             binding.textTimer.text = "00:00"
+            vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200), -1)
         }
     }
 
