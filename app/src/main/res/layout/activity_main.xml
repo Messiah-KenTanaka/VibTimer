@@ -17,24 +17,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/imgBtnStart"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="32dp"
-        android:text="@string/btnStart"
-        app:layout_constraintEnd_toStartOf="@+id/btnStop"
+        android:background="@null"
+        android:contentDescription="クリックしたら表示"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/imgBtnReset"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTimer" />
+        app:layout_constraintTop_toBottomOf="@+id/textTimer"
+        app:srcCompat="@drawable/btn_start" />
 
-    <Button
-        android:id="@+id/btnStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnStop"
+    <ImageButton
+        android:id="@+id/imgBtnReset"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:background="@null"
+        android:contentDescription="クリックしたら停止"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnStart"
-        app:layout_constraintTop_toTopOf="@+id/btnStart" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnStart"
+        app:layout_constraintTop_toBottomOf="@+id/textTimer"
+        app:srcCompat="@drawable/btn_reset" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
