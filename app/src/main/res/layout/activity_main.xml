@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="100sp"
-        app:layout_constraintBottom_toTopOf="@+id/imgBtnStart"
+        app:layout_constraintBottom_toTopOf="@+id/imgBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         tools:text="05:00" />
 
     <ImageButton
-        android:id="@+id/imgBtnStart"
+        android:id="@+id/imgBtn"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@null"

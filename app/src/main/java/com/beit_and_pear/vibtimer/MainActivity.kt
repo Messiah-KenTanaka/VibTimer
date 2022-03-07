@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long)
         : CountDownTimer(millisInFuture, countDownInterval) {
-        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        private val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         var isRunning = false
 
         override fun onTick(millisUntilFinished: Long) {
@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         override fun onFinish() {
             binding.textTimer.text = "00:00"
-            vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200), -1)
+            vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200, 400, 600), -1)
+            binding.imgBtn.setImageResource(R.drawable.btn_stop)
+//            binding.imgBtn.setOnClickListener {
+//                vibrator.cancel()
+//            }
         }
     }
 
@@ -38,20 +42,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("MyActivity", "onCreate")
 
         binding.textTimer.text = "5:00"
-        var timer = MyCountDownTimer(5 * 60 * 1000, 100)
+        var timer = MyCountDownTimer(1 * 60 * 100, 100)
 
-        binding.imgBtnStart.setOnClickListener {
+        binding.imgBtn.setOnClickListener {
             timer.isRunning = when (timer.isRunning) {
                 true -> {
                     timer.cancel()
                     binding.textTimer.text = "5:00"
-                    binding.imgBtnStart.setImageResource(
+                    binding.imgBtn.setImageResource(
                         R.drawable.btn_start)
                     false
                 }
                 false -> {
                     timer.start()
-                    binding.imgBtnStart.setImageResource(
+                    binding.imgBtn.setImageResource(
                         R.drawable.btn_reset)
                     true
                 }
