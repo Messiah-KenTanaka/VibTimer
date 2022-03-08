@@ -27,9 +27,6 @@ class MainActivity : AppCompatActivity() {
             binding.textTimer.text = "00:00"
             vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200, 400, 600), -1)
             binding.imgBtn.setImageResource(R.drawable.btn_stop)
-//            binding.imgBtn.setOnClickListener {
-//                vibrator.cancel()
-//            }
         }
     }
 
@@ -62,4 +59,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
