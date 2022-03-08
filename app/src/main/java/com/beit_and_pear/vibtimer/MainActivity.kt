@@ -15,10 +15,11 @@ import com.beit_and_pear.vibtimer.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+//    private val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    lateinit var vibrator: Vibrator
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long)
         : CountDownTimer(millisInFuture, countDownInterval) {
-        private val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         var isRunning = false
 
         override fun onTick(millisUntilFinished: Long) {
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         override fun onFinish() {
             binding.textTimer.text = "00:00"
-            vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200, 400, 600), -1)
+            vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            vibrator.vibrate(longArrayOf(0, 600, 400, 200, 400, 200, 400, 600), 2)
             binding.imgBtn.setImageResource(R.drawable.btn_stop)
         }
     }
@@ -38,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         // ログ
         Log.i("MyActivity", "onCreate")
@@ -49,14 +53,14 @@ class MainActivity : AppCompatActivity() {
             timer.isRunning = when (timer.isRunning) {
                 true -> {
                     timer.cancel()
-                    binding.imgBtn.setImageResource(
-                        R.drawable.btn_start)
+                    // バイブレーターを停止
+                    vibrator.cancel()
+                    binding.imgBtn.setImageResource(R.drawable.btn_start)
                     false
                 }
                 false -> {
                     timer.start()
-                    binding.imgBtn.setImageResource(
-                        R.drawable.btn_reset)
+                    binding.imgBtn.setImageResource(R.drawable.btn_reset)
                     true
                 }
             }
