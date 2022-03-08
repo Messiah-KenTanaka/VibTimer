@@ -11,7 +11,6 @@ import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Spinner
 import com.beit_and_pear.vibtimer.databinding.ActivityMainBinding
-import kotlin.time.Duration.Companion.seconds
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // スピナーが押された時の処理
             binding.spinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
+            // シークバーが押された時の処理
         binding.seekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
