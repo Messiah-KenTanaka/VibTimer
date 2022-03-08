@@ -15,7 +15,6 @@ import com.beit_and_pear.vibtimer.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-//    private val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
     lateinit var vibrator: Vibrator
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long)
@@ -64,36 +63,35 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
             }
-
-            // スピナーが押された時の処理
-            binding.spinner.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                        timer.cancel()
-                        binding.imgBtn.setImageResource(
-                            R.drawable.btn_start
-                        )
-                        val spinner = parent as? Spinner
-                        val item = spinner?.selectedItem as? String
-                        item?.let {
-                            if (it.isNotEmpty()) {
-                                binding.textTimer.text = it
-                            }
-                            val times = it.split(":")
-                            val min = times[0].toLong()
-                            val sec = times[1].toLong()
-                            timer = MyCountDownTimer((min * 60 + sec) * 1000, 100)
-                        }
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                    }
-
-                }
         }
 
-            // シークバーが押された時の処理
+        // スピナーが押された時の処理
+        binding.spinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    timer.cancel()
+                    binding.imgBtn.setImageResource(
+                        R.drawable.btn_start
+                    )
+                    val spinner = parent as? Spinner
+                    val item = spinner?.selectedItem as? String
+                    item?.let {
+                        if (it.isNotEmpty()) {
+                            binding.textTimer.text = it
+                        }
+                        val times = it.split(":")
+                        val min = times[0].toLong()
+                        val sec = times[1].toLong()
+                        timer = MyCountDownTimer((min * 60 + sec) * 1000, 100)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+            }
+
+        // シークバーが押された時の処理
         binding.seekBar.setOnSeekBarChangeListener(
             object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
