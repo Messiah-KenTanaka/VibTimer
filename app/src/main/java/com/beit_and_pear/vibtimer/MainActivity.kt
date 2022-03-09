@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //タイトルバー非表示
+        supportActionBar?.hide()
+
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         // ログ
@@ -59,6 +62,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 false -> {
                     timer.start()
+                    // バイブレーターを停止
+                    vibrator.cancel()
                     binding.imgBtn.setImageResource(R.drawable.btn_reset)
                     true
                 }
@@ -97,10 +102,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                     timer.cancel()
                     binding.imgBtn.setImageResource(R.drawable.btn_start)
-                    val min = progress / 60L
-                    val sec = progress % 60L
-                    binding.textTimer.text = "%1d:%2$02d".format(min, sec)
-                    timer = MyCountDownTimer(progress * 1000L, 100)
+                    val min = progress / 600L
+                    val sec = progress / 10L
+                    binding.textTimer.text = "%1d:%2$02d".format(0, sec)
+                    timer = MyCountDownTimer(progress * 100L, 100)
                 }
 
                 override fun onStartTrackingTouch(p0: SeekBar?) {
