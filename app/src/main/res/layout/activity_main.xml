@@ -26,7 +26,7 @@
         android:background="@null"
         android:contentDescription="クリックしたら表示"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTimer"
@@ -81,5 +81,19 @@
         android:text="時間設定(分)"
         app:layout_constraintStart_toStartOf="@+id/text_1"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+<!--    サンプル  ca-app-pub-3940256099942544/6300978111-->
+<!--    本物  ca-app-pub-3324255919208405/7761710419-->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="ca-app-pub-3324255919208405/7761710419"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></com.google.android.gms.ads.AdView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

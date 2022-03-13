@@ -11,11 +11,17 @@ import android.widget.AdapterView
 import android.widget.SeekBar
 import android.widget.Spinner
 import com.beit_and_pear.vibtimer.databinding.ActivityMainBinding
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var vibrator: Vibrator
+
+    lateinit var mAdView : AdView
 
     inner class MyCountDownTimer(millisInFuture: Long, countDownInterval: Long)
         : CountDownTimer(millisInFuture, countDownInterval) {
@@ -39,6 +45,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // 広告
+        MobileAds.initialize(this) {}
+
+        val adView = AdView(this)
+
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        mAdView.loadAd(adRequest)
+
+        adView.adSize = AdSize.SMART_BANNER
+//        サンプル  ca-app-pub-3940256099942544/6300978111
+//        本物  ca-app-pub-3324255919208405/7761710419
+        adView.adUnitId = "ca-app-pub-3324255919208405/7761710419"
 
         //タイトルバー非表示
         supportActionBar?.hide()
